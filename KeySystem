@@ -1,170 +1,64 @@
--- Gui to Lua
--- Version: 3.2
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Player = game.Players.LocalPlayer
+local Window = OrionLib:MakeWindow({Name = "Key System", HidePremium = false, SaveConfig = true,IntroText="VH Key System" })
 
--- Instances:
+OrionLib:MakeNotification({
+	Name = "Logged In!",
+	Content = "You are logged in as "..Player.Name..".",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
 
-local loginsystem = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local closeButton = Instance.new("TextButton")
-local password = Instance.new("TextBox")
-local username = Instance.new("TextBox")
-local loginButton = Instance.new("TextButton")
-local TextLabel = Instance.new("TextLabel")
-local Done = Instance.new("Frame")
-local OpenVoidhubTEXT = Instance.new("TextLabel")
-local OpenVoidhubbutton = Instance.new("TextButton")
+_G.Key= "VxidedOnTop"
+_G.KeyInput = "string"
 
---Properties:
-
-loginsystem.Name = "loginsystem"
-loginsystem.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-loginsystem.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-loginsystem.ResetOnSpawn = false
-Frame.Parent = loginsystem
-Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Frame.BorderColor3 = Color3.fromRGB(85, 0, 127)
-Frame.Position = UDim2.new(0.348408848, 0, 0.400217861, 0)
-Frame.Size = UDim2.new(0, 296, 0, 224)
-Frame.Active=true
-closeButton.Name = "closeButton"
-closeButton.Parent = Frame
-closeButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-closeButton.BorderColor3 = Color3.fromRGB(85, 0, 127)
-closeButton.Position = UDim2.new(0.831081092, 0, 0, 0)
-closeButton.Size = UDim2.new(0, 50, 0, 50)
-closeButton.Font = Enum.Font.Cartoon
-closeButton.Text = "X"
-closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-closeButton.TextScaled = true
-closeButton.TextSize = 14.000
-closeButton.TextWrapped = true
-
-password.Name = "password"
-password.Parent = Frame
-password.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-password.BackgroundTransparency = 1.000
-password.BorderColor3 = Color3.fromRGB(85, 0, 127)
-password.Position = UDim2.new(0.162162155, 0, 0.513392866, 0)
-password.Size = UDim2.new(0, 200, 0, 50)
-password.Font = Enum.Font.SourceSans
-password.PlaceholderColor3 = Color3.fromRGB(85, 0, 127)
-password.PlaceholderText = "EnterUserKeyID"
-password.Text = ""
-password.TextColor3 = Color3.fromRGB(85, 0, 127)
-password.TextScaled = true
-password.TextSize = 14.000
-password.TextWrapped = true
-
-username.Name = "username"
-username.Parent = Frame
-username.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-username.BackgroundTransparency = 1.000
-username.BorderColor3 = Color3.fromRGB(85, 0, 127)
-username.Position = UDim2.new(0.162162155, 0, 0.258928567, 0)
-username.Size = UDim2.new(0, 200, 0, 50)
-username.Font = Enum.Font.SourceSans
-username.PlaceholderColor3 = Color3.fromRGB(85, 0, 127)
-username.PlaceholderText = "Enter KeyID"
-username.Text = ""
-username.TextColor3 = Color3.fromRGB(85, 0, 127)
-username.TextScaled = true
-username.TextSize = 14.000
-username.TextStrokeColor3 = Color3.fromRGB(85, 0, 127)
-username.TextWrapped = true
-
-loginButton.Name = "loginButton"
-loginButton.Parent = Frame
-loginButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-loginButton.Position = UDim2.new(0.270270258, 0, 0.772321403, 0)
-loginButton.Size = UDim2.new(0, 136, 0, 43)
-loginButton.Font = Enum.Font.Cartoon
-loginButton.Text = "Login"
-loginButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-loginButton.TextScaled = true
-loginButton.TextSize = 14.000
-loginButton.TextWrapped = true
-
-TextLabel.Parent = Frame
-TextLabel.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-TextLabel.BorderColor3 = Color3.fromRGB(85, 0, 127)
-TextLabel.Size = UDim2.new(0, 246, 0, 50)
-TextLabel.Font = Enum.Font.Cartoon
-TextLabel.Text = "VH Login"
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14.000
-TextLabel.TextWrapped = true
-
-Done.Name = "Done"
-Done.Parent = loginsystem
-Done.BackgroundColor3 = Color3.fromRGB(85, 0, 127)
-Done.Position = UDim2.new(0.319733143, 0, 0.460058481, 0)
-Done.Size = UDim2.new(0, 405, 0, 160)
-Done.Visible = false
-
-OpenVoidhubTEXT.Name = "OpenVoidhubTEXT"
-OpenVoidhubTEXT.Parent = Done
-OpenVoidhubTEXT.BackgroundColor3 = Color3.fromRGB(85, 0, 127)
-OpenVoidhubTEXT.BackgroundTransparency = 1.000
-OpenVoidhubTEXT.Position = UDim2.new(0.150953054, 0, 0.1823349, 0)
-OpenVoidhubTEXT.Size = UDim2.new(0, 281, 0, 47)
-OpenVoidhubTEXT.Font = Enum.Font.SourceSans
-OpenVoidhubTEXT.Text = "Access Granted"
-OpenVoidhubTEXT.TextColor3 = Color3.fromRGB(0, 0, 0)
-OpenVoidhubTEXT.TextScaled = true
-OpenVoidhubTEXT.TextSize = 14.000
-OpenVoidhubTEXT.TextWrapped = true
-
-OpenVoidhubbutton.Name = "OpenVoidhubbutton"
-OpenVoidhubbutton.Parent = Done
-OpenVoidhubbutton.BackgroundColor3 = Color3.fromRGB(28, 28, 28)
-OpenVoidhubbutton.Position = UDim2.new(0.329529554, 0, 0.622321308, 0)
-OpenVoidhubbutton.Size = UDim2.new(0, 136, 0, 43)
-OpenVoidhubbutton.Font = Enum.Font.Cartoon
-OpenVoidhubbutton.Text = "OPEN VH"
-OpenVoidhubbutton.TextColor3 = Color3.fromRGB(255, 255, 255)
-OpenVoidhubbutton.TextScaled = true
-OpenVoidhubbutton.TextSize = 14.000
-OpenVoidhubbutton.TextWrapped = true
-OpenVoidhubbutton.MouseButton1Click:Connect(function()
-	loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/vxidedVH/VoidHub/main/KeyPassed"))()
-end)
-
--- Scripts:
-
-local function SYUEIPH_fake_script() -- closeButton.LocalScript 
-	local script = Instance.new('LocalScript', closeButton)
-
-	script.Parent.MouseButton1Click:Connect(function()
-		script.Parent.Parent.Visible = false
-	end)
+function MakeScriptHub()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/vxidedVH/VoidHub/main/KeyPassed"))()
 end
-coroutine.wrap(SYUEIPH_fake_script)()
-local function FKHLOQ_fake_script() -- loginButton.LocalScript 
-	local script = Instance.new('LocalScript', loginButton)
 
-	script.Parent.MouseButton1Click:Connect(function()
-		if script.Parent.Parent.username.Text == "VoidedHubA-213" then --replace "test username" with your account name(not your roblox account)
-			if script.Parent.Parent.password.Text == "Vxided6582321335234" then --replace "test password" with your password(not your roblox password!!!"
-				script.Parent.Parent.Parent.Done.Visible = true --change this line of script to the thing you want it to happend after you logging in 
-				script.Parent.MouseButton1Click:Connect(function()
-					script.Parent.Parent.Visible = false
-				end)
-			end
-		else
-			script.Parent.Text = "Incorrect Username or Password." --that is the text when you type incorrect username or password
-			wait(1)
-			script.Parent.Text = "Login" --dont change this
-		end
-	end)
-	
+function CorrectKeyNotification ()
+OrionLib:MakeNotification({
+	Name = "Correct Key",
+	Content = "You have entered the correct key.",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
 end
-coroutine.wrap(FKHLOQ_fake_script)()
-local function INEAZ_fake_script() -- OpenVoidhubbutton.LocalScript 
-	local script = Instance.new('LocalScript', OpenVoidhubbutton)
 
-	script.Parent.MouseButton1Click:Connect(function()
-		script.Parent.Parent.Visible = false
-	end)
+function INCorrectKeyNotification ()
+OrionLib:MakeNotification({
+	Name = "inCorrect Key",
+	Content = "You have entered the incorrect key.",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
 end
-coroutine.wrap(INEAZ_fake_script)()
+
+local Tab = Window:MakeTab({
+	Name = "Key",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddTextbox({
+	Name = "Enter Key",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		_G.KeyInput = Value
+
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Check Key",
+	Callback = function()
+      		if _G.KeyInput == _G.Key then 	
+      		MakeScriptHub()
+      		CorrectKeyNotification ()
+      		     else
+      		INCorrectKeyNotification ()
+  	end
+  	end
+  	
+})
