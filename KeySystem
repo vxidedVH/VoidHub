@@ -127,7 +127,7 @@ OpenVoidhubbutton.TextScaled = true
 OpenVoidhubbutton.TextSize = 14.000
 OpenVoidhubbutton.TextWrapped = true
 OpenVoidhubbutton.MouseButton1Click:Connect(function()
-	loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/vxidedVH/VoidHub/main/Script.lua"))()
+	loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/vxidedVH/VoidHub/main/KeyPassed"))()
 end)
 
 -- Scripts:
